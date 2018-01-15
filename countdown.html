@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<style>
+		h1 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#countdown { visibility: hidden }
+	</style>
+</head>
+<body>
+	<div id="current_event">{{ .Text }}</div>
+	<h1></h1>
+	<div id="countdown"><h1>{{ .Time }}</h1></div>
+	<script type="text/javascript">
+		"use strict"
+		const countdown = document.getElementById("countdown"),
+			until = countdown.innerHTML
+
+		function updateRemaining() {
+			let difference = until - Date.now()
+
+			if ( difference <= 0 ) {
+				if ( difference > -1000 ) {
+					console.log("Reloading...")
+					setTimeout(() => location.reload(true), 1100)
+				}
+			} else {
+				setTimeout(updateRemaining, difference % 1000)
+				const cdown = countdown.innerHTML = [
+					"",
+					[86400000, "day"],
+					[3600000, "hour"],
+					[60000, "minute"],
+					[1000, "second"]
+				].reduce((accum, cur, idx) => {
+					const val = Math.floor(difference / cur[0])
+					if ( val || accum.length ) {
+						accum += `${val} ${cur[1]}${val > 1 ? 's' : ''}${idx < 4 ? ', ' : ''}`
+						difference %= cur[0]
+					}
+					return accum
+				})
+				countdown.innerHTML = cdown ? `Next surprise in: ${cdown}` : "Fetching next secret, please wait..."
+				countdown.style.visibility = 'visible'
+			}
+		}
+
+		const now = Date.now()
+		if ( until !== -1 ) {
+			updateRemaining()
+		}
+		
+	</script>
+</body>
+</html>

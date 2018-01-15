@@ -1,0 +1,6 @@
+[
+	{ "text": "<h1>The first event to display</h1>", "time": 0 },
+	{ "text": "<p>An event that will be displayed on August 8th, 2020, at 1:00PM in the time zone where the server is built.</p>", "time": "8/8/2020 01:00 PM" },
+	{ "text": "<div>An event that will be displayed on January 16th, 2018, at 10:13:43PM in the GMT-5h time zone (EST)", "time": "2018-01-16 22:13:43 -0500" },
+	{ "text": "An event that will be displayed 5 hours and 10 minutes from the time the server is built.", "time": "+5h10m" }
+]
