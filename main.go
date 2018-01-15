@@ -20,13 +20,12 @@ func StatusHandler(outstream http.ResponseWriter, r *http.Request) {
 		render CountdownEntry
 	)
 
-	// This solves atomicity issues with doing index++
 	if now > current.Time && index < len - 1 {
 		index++
 		current = CountdownEntries[index]
 	}
 
-	if index >= len - 1 {
+	if index > len - 1 {
 		render = CountdownEntry{
 			current.Text,
 			-1, // Nothing coming ever again

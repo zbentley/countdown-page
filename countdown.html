@@ -1,31 +1,20 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-	<style>
-		h1 {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		#countdown { visibility: hidden }
-	</style>
-</head>
 <body>
-	<div id="current_event">{{ .Text }}</div>
+	<div>{{ .Text }}</div>
 	<h1></h1>
-	<div id="countdown"><h1>{{ .Time }}</h1></div>
+	<h1 style="visibility:hidden;" id="countdown">{{ .Time }}</h1>
 	<script type="text/javascript">
 		"use strict"
 		const countdown = document.getElementById("countdown"),
-			until = countdown.innerHTML
+			until = {{ .Time }}
 
 		function updateRemaining() {
 			let difference = until - Date.now()
-
 			if ( difference <= 0 ) {
 				if ( difference > -1000 ) {
-					console.log("Reloading...")
+					console.log("Reloading in 1s...")
 					setTimeout(() => location.reload(true), 1100)
 				}
 			} else {
@@ -48,12 +37,9 @@
 				countdown.style.visibility = 'visible'
 			}
 		}
-
-		const now = Date.now()
 		if ( until !== -1 ) {
 			updateRemaining()
 		}
-		
 	</script>
 </body>
 </html>
