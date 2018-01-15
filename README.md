@@ -9,6 +9,8 @@ For example, if you wanted to show someone a notification on a website only afte
 
 When given an HTML page template and a JSON data file of a list of events (where each event is some text and a relative or absolute timestamp when it should be displayed), the countdown page application generates a single dependency-free binary for the specified target architecture. That binary will run a read-only webserver which serves a single page containing the current event and countdown until the next event, if any.
 
+![Demo](https://raw.githubusercontent.com/zbentley/countdown-page/master/demo.gif)
+
 # Usage
 
 ```bash
